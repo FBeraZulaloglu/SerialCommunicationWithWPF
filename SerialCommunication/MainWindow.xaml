@@ -1,0 +1,84 @@
+﻿<Window x:Class="SerialCommunication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialCommunication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Button x:Name="openSerial" Content="Open Serial"
+                Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" Style="{StaticResource buttonStyle}"
+                FontSize="24"
+                Margin="5" Click="openSerial_Click"/>
+
+        <Button x:Name="closeSerial" Content="Close Serial" 
+                Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" Style="{StaticResource buttonStyle}"
+                FontSize="24"
+                Margin="5" Click="closeSerial_Click"/>
+        
+        <!--The specialites that we should set about serial communication-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Foreground="#FFBF1D1D" Margin="5 0">Bağlanmak istedğiniz portu seçiniz.</Label>
+            <ComboBox x:Name="ports" Text="Mevcut Portlar" IsEditable="True" IsEnabled="True"
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5 25 0 0"
+                  Background="#FF0A6DB2"
+                  MinHeight="20" MinWidth="200"
+                  FontSize="24"
+                  SelectionChanged="ports_SelectionChanged" 
+                  MouseEnter="PortsMouseEnter"
+                  BorderBrush="#FF083357" BorderThickness="4"
+                  Foreground="#FF149AB8" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold"/>
+
+            <Label Grid.Column="1" Foreground="#FFBF1D1D" Margin="5 0">Gerekli Baud Rate ayarını yapınız.</Label>
+            <ComboBox x:Name="baudRateCombo" Grid.Column="1" Text="Baud Rate" IsEditable="True" IsEnabled="True"
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5 25 0 0"
+                  Background="#FF0A6DB2"
+                  MinHeight="20" MinWidth="200"
+                  FontSize="24"
+                  SelectionChanged="baudRate_SelectionChanged" 
+                  MouseEnter="PortsMouseEnter"
+                  BorderBrush="#FF083357" BorderThickness="4"
+                  Foreground="#FF149AB8" FontFamily="Yu Gothic UI Semibold" FontWeight="Bold">
+                <ComboBoxItem Content="9600"></ComboBoxItem>
+                <ComboBoxItem Content="57600"></ComboBoxItem>
+                <ComboBoxItem Content="19200"></ComboBoxItem>
+                <ComboBoxItem Content="38400"></ComboBoxItem>
+                <ComboBoxItem Content="115200"></ComboBoxItem>
+            </ComboBox>
+
+            <CheckBox x:Name="isConnected" Grid.Column="2" 
+                      Content="Seri Porta Bağlandı" IsHitTestVisible="False"
+                      VerticalAlignment="Center" HorizontalAlignment="Center"></CheckBox>
+                      
+
+        </Grid>
+
+        <RichTextBox x:Name="dataCenter" Grid.Row="1"
+                     Background="#FFC78C45"
+                     BorderBrush="#FFDC3737" 
+                     BorderThickness="2"
+                     VerticalScrollBarVisibility="Auto"
+                     >
+        </RichTextBox>
+
+    </Grid>
+</Window>
